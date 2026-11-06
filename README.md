@@ -16,7 +16,7 @@ Options go after `-s --`, for example the panel's hostname:
 curl -fsSL https://github.com/orlycore/flexypanel-releases/releases/latest/download/install.sh | sudo bash -s -- --hostname panel.example.com
 ```
 
-Until the first stable release the commands above install the newest pre-release. To install a specific version, download that tag's installer and pass the same version:
+The commands above install the newest release that has passed the full test (marked "Latest"); newer pre-releases are listed under Releases. To install a specific version, download that tag's installer and pass the same version:
 
 ```sh
 curl -fsSL https://github.com/orlycore/flexypanel-releases/releases/download/vX.Y.Z/install.sh | sudo bash -s -- --version X.Y.Z
@@ -24,7 +24,7 @@ curl -fsSL https://github.com/orlycore/flexypanel-releases/releases/download/vX.
 
 ## Update
 
-`flexypanelctl self-update`, or the Update button in the panel. Updates are verified, the panel database and configuration are backed up first, and a failed update is rolled back automatically. Sites keep running. The update channel is `stable` or `beta`; while there is no stable release, use the `beta` channel.
+`flexypanelctl self-update`, or the Update button in the panel. Updates are verified, the panel database and configuration are backed up first, and a failed update is rolled back automatically. Sites keep running. The update channel is `stable` (tested releases, the default) or `beta` (also pre-releases).
 
 ## What a release contains
 
@@ -48,4 +48,4 @@ openssl pkeyutl -verify -pubin -inkey release.pub -rawin -in manifest.json -sigf
 sha256sum flexypanel_*_linux_amd64.tar.gz   # compare with manifest.json
 ```
 
-Tags `vX.Y.Z` are the stable channel; `vX.Y.Z-beta.N` and `vX.Y.Z-alpha.N` (prereleases) are the beta channel.
+Tags `vX.Y.Z-alpha.N` and `vX.Y.Z-beta.N` are published as pre-releases (the beta channel); after a full test they are promoted to final releases (the stable channel), as every `vX.Y.Z` tag is.
